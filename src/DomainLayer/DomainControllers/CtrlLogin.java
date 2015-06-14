@@ -21,7 +21,7 @@ public class CtrlLogin {
     public void Login(String userN, String passwd) throws Exception {
         CtrlUsuariRegistrat cUR = dataFactory.getCtrlUsuariRegitrat();
         UsuariRegistrat ur = cUR.get(userN);
-        if(ur.getPwd().equals(passwd)) {
+        if(!ur.getPwd().equals(passwd)) {
             throw new Exception ("pwdIncorrecte");
         }
     }

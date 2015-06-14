@@ -67,7 +67,7 @@ public class CPJugarPartida {
      void doLogin(String u, String pass) throws Exception {
          if(u.equals("")) throw new Exception("Usuari incorrecte");
          if(pass.equals("")) throw new Exception("Contrasenya incorrecte");
-         cdJugar.ferAutenticacio(user, pass);
+         cdJugar.ferAutenticacio(u, pass);
          user = u;
      }
     //FI VISTA LOGIN------------------------------------------------------------
