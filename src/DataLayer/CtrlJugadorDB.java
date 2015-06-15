@@ -39,9 +39,9 @@ public class CtrlJugadorDB implements CtrlJugador {
         SessionFactory factory = config.buildSessionFactory();
         Session session = factory.getCurrentSession();
         session.beginTransaction();
-        List<Jugador> l = session.createQuery("from jugador where username = :usr").setParameter("usr", username).list();
+        List<Jugador> l = session.createQuery("from Jugador where username = :usr").setParameter("usr", username).list();
         session.getTransaction().commit();
-        session.close();
+        factory.close();
         if (!l.isEmpty()) return l.get(0);
         throw new Exception("jugadorNoExisteix");
     }
@@ -58,9 +58,9 @@ public class CtrlJugadorDB implements CtrlJugador {
         SessionFactory factory = config.buildSessionFactory();
         Session session = factory.getCurrentSession();
         session.beginTransaction();
-        List<Jugador> l = session.createQuery("from jugador where email = :em").setParameter("em", email).list();
+        List<Jugador> l = session.createQuery("from Jugador where email = :em").setParameter("em", email).list();
         session.getTransaction().commit();
-        session.close();
+        factory.close();
         if (!l.isEmpty()) return l.get(0);
         throw new Exception("jugadorNoExisteix");
     }
@@ -113,7 +113,7 @@ public class CtrlJugadorDB implements CtrlJugador {
         SessionFactory factory = config.buildSessionFactory();
         Session session = factory.getCurrentSession();
         session.beginTransaction();
-        List<Jugador> l = session.createQuery("from jugador").list();
+        List<Jugador> l = session.createQuery("from Jugador").list();
         session.getTransaction().commit();
         factory.close();
         Set<Jugador> r = new HashSet();
