@@ -172,13 +172,13 @@ public class Partida implements Serializable {
     public void movimentAmunt() {
         int j = 1;
         while (j<=4) {
-            int i = 4;
+            int i = 1;
             Casella c = matriu[i-1][j-1];
             int oldi = c.getNumeroFila()-1;
             int oldj = c.getNumeroColumna()-1;
             int oldn = c.getNumero();
-            i--;
-            while (i>=1) {
+            i++;
+            while (i<=4) {
                 c = matriu[i-1][j-1];
                 int n = c.getNumero();
                 if (n!=0) {
@@ -193,19 +193,19 @@ public class Partida implements Serializable {
                         c = matriu[oldi][oldj];
                         c.setNumero(n+n);
                         puntuacio += 2*n;
-                        oldi--;
+                        oldi++;
                         c = matriu[oldi][oldj];
                         n = c.getNumero();
                         oldn = n;
                     }
                     else if (oldn != n) {
-                        oldi--;
+                        oldi++;
                         c = matriu[oldi][oldj];
                         oldn = n;
                         c.setNumero(n);
                     }
                 }
-                i--;
+                i++;
             }
             j++;
         }
@@ -341,8 +341,7 @@ public class Partida implements Serializable {
         int i = 1;
         int j = 1;
         boolean trobat = false;
-        boolean perduda = false;
-        while(!trobat && !perduda && i<=4 && j<=4) {
+        while(!trobat && i<=4 && j<=4) {
             Casella c = matriu[i-1][j-1];
             int n = c.getNumero();
             if (n==0) trobat = true;
@@ -351,21 +350,21 @@ public class Partida implements Serializable {
                 else if (j==4) {
                     c = matriu[i][j-1];
                     int nd = c.getNumero();
-                    if (n==nd) {perduda=true;}
+                    if (n==nd) {trobat=true;}
                 }
                 else if (i==4) {
                     c = matriu[i-1][j];
                     int ns = c.getNumero();
-                    if (n==ns) {perduda = true;}
+                    if (n==ns) {trobat = true;}
                 }
                 else {
                     c = matriu[i][j-1];
                     int nd = c.getNumero();
-                    if (n==nd) {perduda=true;}
+                    if (n==nd) {trobat=true;}
                     if (!trobat) {
-                        c = matriu[i][j-1];
+                        c = matriu[i-1][j];
                         nd = c.getNumero();
-                        if (n==nd) {perduda=true;}
+                        if (n==nd) {trobat=true;}
                     }
                 }
             }
@@ -375,7 +374,7 @@ public class Partida implements Serializable {
                 j=1;
             }
         }
-        if (perduda) {estaAcabada=true;}
+        if (!trobat) {estaAcabada=true;}
     }
 
 }
