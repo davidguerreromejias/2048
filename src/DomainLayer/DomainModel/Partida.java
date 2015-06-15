@@ -341,7 +341,8 @@ public class Partida implements Serializable {
         int i = 1;
         int j = 1;
         boolean trobat = false;
-        while(!trobat && i<=4 && j<=4) {
+        boolean perduda = false;
+        while(!trobat && !perduda && i<=4 && j<=4) {
             Casella c = matriu[i-1][j-1];
             int n = c.getNumero();
             if (n==0) trobat = true;
@@ -350,21 +351,21 @@ public class Partida implements Serializable {
                 else if (j==4) {
                     c = matriu[i][j-1];
                     int nd = c.getNumero();
-                    if (n==nd) {trobat=true;}
+                    if (n==nd) {perduda=true;}
                 }
                 else if (i==4) {
                     c = matriu[i-1][j];
                     int ns = c.getNumero();
-                    if (n==ns) {trobat = true;}
+                    if (n==ns) {perduda = true;}
                 }
                 else {
                     c = matriu[i][j-1];
                     int nd = c.getNumero();
-                    if (n==nd) {trobat=true;}
+                    if (n==nd) {perduda=true;}
                     if (!trobat) {
                         c = matriu[i][j-1];
                         nd = c.getNumero();
-                        if (n==nd) {trobat=true;}
+                        if (n==nd) {perduda=true;}
                     }
                 }
             }
@@ -374,7 +375,7 @@ public class Partida implements Serializable {
                 j=1;
             }
         }
-        if (trobat) {estaAcabada=true;}
+        if (perduda) {estaAcabada=true;}
     }
 
 }

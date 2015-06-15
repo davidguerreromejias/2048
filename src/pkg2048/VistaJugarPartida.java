@@ -341,8 +341,8 @@ public class VistaJugarPartida extends javax.swing.JFrame {
         int num;
         System.out.println(caselles.size());
         for (Triplet<Integer, Integer, Integer> c : caselles) {
-            i = c.getValue0();
-            j = c.getValue1();
+            i = c.getValue0()-1;
+            j = c.getValue1()-1;
             num = c.getValue2();
             matriu.get(i*4+j).setText(""+num);
         }

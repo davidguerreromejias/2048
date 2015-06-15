@@ -47,12 +47,12 @@ public class CtrlJugarPartida {
     public Triplet<Integer,Integer,Set<Triplet<Integer,Integer,Integer>>> crearPartida() {
         CtrlJoc2048 cJ2048 = dataFactory.getCtrlJoc2048();
         Joc2048 J2048 = cJ2048.get();
-        Integer i = J2048.getIdPartida()+1;
-        J2048.setIdPartida(i);
+        Integer i = J2048.getIdPartida();
+        J2048.setIdPartida(i+1);
         Set<Triplet<Integer,Integer,Integer>> casellesAmbNum = JugadorConnectat.crearPartida(i);
         Integer mpunt = JugadorConnectat.getMillorPuntuacio();
         dlPartidaActual = JugadorConnectat.getPartidaActual();
-        actualitzarDB(dlPartidaActual, JugadorConnectat, true);
+        actualitzarDB(dlPartidaActual, JugadorConnectat, true, J2048);
         return Triplet.with(0,mpunt,casellesAmbNum);
     }
     
@@ -93,7 +93,7 @@ public class CtrlJugarPartida {
         boolean eG = dlPartidaActual.getEstaGuanyada();
         Integer p = dlPartidaActual.getPuntuacio();
         Set<Triplet<Integer,Integer,Integer>> CI = dlPartidaActual.casellesAmbNum();
-        actualitzarDB(dlPartidaActual, JugadorConnectat, false);
+        actualitzarDB(dlPartidaActual, JugadorConnectat, false, null);
         return Quartet.with(eA, eG, p, CI);
     }
     
@@ -102,7 +102,7 @@ public class CtrlJugarPartida {
         return cR.ConsultarRanking(dlPartidaActual.getStrategyPuntuacio());
     }
     
-    private void actualitzarDB(Partida p, Jugador jg, Boolean crea) {
+    private void actualitzarDB(Partida p, Jugador jg, Boolean crea, Joc2048 joc) {
         AnnotationConfiguration config = new AnnotationConfiguration();
         config.addAnnotatedClass(Partida.class);
         config.addAnnotatedClass(Casella.class);
@@ -113,7 +113,10 @@ public class CtrlJugarPartida {
         SessionFactory factory = config.buildSessionFactory();
         Session session = factory.getCurrentSession();
         session.beginTransaction();
-        if (crea) session.save(p);
+        if (crea) {
+        	session.save(p);
+        	session.update(joc);
+        }
         else session.update(p);
         session.update(jg);
         Casella caselles[][] = p.getMatriu();
