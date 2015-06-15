@@ -79,6 +79,7 @@ public class CtrlJugarPartida {
             }
         }
         if (!eA) {
+        	dlPartidaActual.nouNumero();
             dlPartidaActual.ComprovarPartidaPerduda();
             eA = dlPartidaActual.getEstaAcabada();
         }
@@ -86,9 +87,6 @@ public class CtrlJugarPartida {
             Integer p = dlPartidaActual.getPuntuacio();
             JugadorConnectat.actualitzaMillorPuntuacio(p);
             JugadorConnectat.switchPartida(dlPartidaActual);
-        }
-        if (!eA) {
-            dlPartidaActual.nouNumero();
         }
         boolean eG = dlPartidaActual.getEstaGuanyada();
         Integer p = dlPartidaActual.getPuntuacio();
