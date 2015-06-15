@@ -35,6 +35,7 @@ public class Partida implements Serializable {
         this.estaAcabada = estaAcabada;
         this.estaGuanyada = estaGuanyada;
         this.puntuacio = puntuacio;
+        this.matriu = new Casella[4][4];
     }
     
     public int getIdPartida() {
@@ -106,7 +107,6 @@ public class Partida implements Serializable {
     public void crearCaselles() {
         int i = 1;
         int j = 1;
-        Integer punt = null;
         while (j<=4) {
             matriu[i-1][j-1] = new Casella(i,j,idPartida);
             i++;

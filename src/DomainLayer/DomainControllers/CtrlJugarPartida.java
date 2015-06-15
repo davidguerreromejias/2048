@@ -61,6 +61,7 @@ public class CtrlJugarPartida {
         cL.Login(userN, password);
         CtrlJugador cJ = dataFactory.getCtrlJugador();
         JugadorConnectat = cJ.getU(userN);
+        System.out.println("aut");
     }
     
     public Quartet<Boolean,Boolean,Integer,Set<Triplet<Integer,Integer,Integer>>> FerMoviment(String tipusMov) {

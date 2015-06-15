@@ -71,6 +71,7 @@ public class Jugador extends UsuariRegistrat {
     }
     
     public Set<Triplet<Integer,Integer,Integer>> crearPartida(Integer id) {
+    	System.out.println("entra crarPartida");
         Partida p = new Partida(id,false,false,0);
         p.crearCaselles();
         p.nouNumero();

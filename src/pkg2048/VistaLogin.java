@@ -106,6 +106,7 @@ public class VistaLogin extends javax.swing.JFrame {
             cPJugar.inicializarPartida();
         } catch (Exception ex) {
             lblError.setText(ex.getMessage());
+            System.out.println(ex.getMessage());
         }
     }//GEN-LAST:event_btnLoginMousePressed
 
