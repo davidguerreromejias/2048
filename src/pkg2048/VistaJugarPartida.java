@@ -278,13 +278,21 @@ public class VistaJugarPartida extends javax.swing.JFrame {
         
         moviment = "";
         txtPuntuacio.setText(""+info.getValue2());
+        buidarCaselles();
         actualitzarCaselles(info.getValue3());
         if(info.getValue1())CPJugar.inicializarFinal(info.getValue0(), ""+info.getValue2());
 
     }//GEN-LAST:event_formKeyPressed
 
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private void buidarCaselles() {
+    	for (JLabel jLabel : matriu) {
+			jLabel.setText("");
+		}
+	}
+
+
+	// Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lbl00;
     private javax.swing.JLabel lbl01;
     private javax.swing.JLabel lbl02;
@@ -331,6 +339,7 @@ public class VistaJugarPartida extends javax.swing.JFrame {
         int i;
         int j;
         int num;
+        System.out.println(caselles.size());
         for (Triplet<Integer, Integer, Integer> c : caselles) {
             i = c.getValue0();
             j = c.getValue1();
