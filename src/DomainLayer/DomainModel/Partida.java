@@ -173,13 +173,13 @@ public class Partida implements Serializable {
         int j = 1;
         while (j<=4) {
             int i = 4;
-            Casella c = matriu[i][j];
-            int oldi = c.getNumeroFila();
-            int oldj = c.getNumeroColumna();
+            Casella c = matriu[i-1][j-1];
+            int oldi = c.getNumeroFila()-1;
+            int oldj = c.getNumeroColumna()-1;
             int oldn = c.getNumero();
             i--;
             while (i>=1) {
-                c = matriu[i][j];
+                c = matriu[i-1][j-1];
                 int n = c.getNumero();
                 if (n!=0) {
                     if (oldn!=0) {
@@ -215,13 +215,13 @@ public class Partida implements Serializable {
         int j = 1;
         while (j<=4) {
             int i = 1;
-            Casella c = matriu[i][j];
-            int oldi = c.getNumeroFila();
-            int oldj = c.getNumeroColumna();
+            Casella c = matriu[i-1][j-1];
+            int oldi = c.getNumeroFila()-1;
+            int oldj = c.getNumeroColumna()-1;
             int oldn = c.getNumero();
             i++;
             while (i<=4) {
-                c = matriu[i][j];
+                c = matriu[i-1][j-1];
                 int n = c.getNumero();
                 if (n!=0) {
                     if (oldn!=0) {
@@ -257,13 +257,13 @@ public class Partida implements Serializable {
         int i = 1;
         while (i<=4) {
             int j = 4;
-            Casella c = matriu[i][j];
-            int oldi = c.getNumeroFila();
-            int oldj = c.getNumeroColumna();
+            Casella c = matriu[i-1][j-1];
+            int oldi = c.getNumeroFila()-1;
+            int oldj = c.getNumeroColumna()-1;
             int oldn = c.getNumero();
             j--;
             while (j>=1) {
-                c = matriu[i][j];
+                c = matriu[i-1][j-1];
                 int n = c.getNumero();
                 if (n!=0) {
                     if (oldn!=0) {
@@ -299,13 +299,13 @@ public class Partida implements Serializable {
         int i = 1;
         while (i<=4) {
             int j = 1;
-            Casella c = matriu[i][j];
-            int oldi = c.getNumeroFila();
-            int oldj = c.getNumeroColumna();
+            Casella c = matriu[i-1][j-1];
+            int oldi = c.getNumeroFila()-1;
+            int oldj = c.getNumeroColumna()-1;
             int oldn = c.getNumero();
             j++;
             while (j<=4) {
-                c = matriu[i][j];
+                c = matriu[i-1][j-1];
                 int n = c.getNumero();
                 if (n!=0) {
                     if (oldn!=0) {
@@ -342,27 +342,27 @@ public class Partida implements Serializable {
         int j = 1;
         boolean trobat = false;
         while(!trobat && i<=4 && j<=4) {
-            Casella c = matriu[i][j];
+            Casella c = matriu[i-1][j-1];
             int n = c.getNumero();
             if (n==0) trobat = true;
             else {
                 if (j==4 && i==4) {}
                 else if (j==4) {
-                    c = matriu[i+1][j];
+                    c = matriu[i][j-1];
                     int nd = c.getNumero();
                     if (n==nd) {trobat=true;}
                 }
                 else if (i==4) {
-                    c = matriu[i][j+1];
+                    c = matriu[i-1][j];
                     int ns = c.getNumero();
                     if (n==ns) {trobat = true;}
                 }
                 else {
-                    c = matriu[i+1][j];
+                    c = matriu[i][j-1];
                     int nd = c.getNumero();
                     if (n==nd) {trobat=true;}
                     if (!trobat) {
-                        c = matriu[i+1][j];
+                        c = matriu[i][j-1];
                         nd = c.getNumero();
                         if (n==nd) {trobat=true;}
                     }
